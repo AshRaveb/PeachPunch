@@ -1,15 +1,12 @@
 import React from 'react';
-import overlayImage from <div styleName="" />
-<images />
-<peachmaid className="jng"></peachmaid>>
-<images></images>/Logo7.png';
+import { Link } from 'react-router-dom';
 
 function Home() {
   return (
     <div className="home-container">
       <header className="home-header">
-        <h1>Welcome to Stranger's Things</h1>
-        <p>Your go-to platform for buying and selling unique items!</p>
+        <h1>PeachPunch</h1>
+        <p>Online Appearl that Packs a Punch</p>
       </header>
       <section className="home-features">
         <div className="feature">
