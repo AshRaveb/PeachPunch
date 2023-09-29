@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import Footer from '../footer/footer';
+// import Footer from '../footer/footer';
 
 
-function RegistrationForm({ BASE_URL }) {
+function Registrationform({ BASE_URL }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);

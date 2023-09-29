@@ -1,56 +1,44 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "./App.css";
-import "./index.css";
-import NavBar from "./Components/NavBar";
+import Navbar from "./Navbar/Navbar";
 import Home from "./Components/Home";
-import AllPosts from "./Components/AllPosts";
-import RegistrationForm from "./Components/RegistrationForm";
+import Registrationform from "./Components/Registrationform";
 import Login from "./Components/Login";
-import { logIn, logOut, isLoggedIn } from "./Helpers/authHelpers";
-import CreatePostForm from "./Components/CreatePostForm";
+import { logIn, logOut, isLoggedIn } from "./Helpers/authhelpers";
 import { fetchWithHeaders } from "./Helpers/api";
+import { Carousel } from "./Components/Carousel";
 
 export default function App() {
-  const COHORT_NAME = "2302-ACC-PT-WEB-PT-A";
-  const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
-  const storedToken = localStorage.getItem("authToken"); // Check if there is a token in localStorage
-  const [token, setToken] = useState(storedToken || ""); // Set initial value to storedToken
+  const BASE_URL = 'https://fakestoreapi.com';
+  const storedToken = localStorage.getItem("authToken");
+  const [token, setToken] = useState(storedToken || "");
 
-  // State to store the authentication token
   useEffect(() => {
-    const authToken = sessionStorage.getItem("authToken"); // Check if there's a token in sessionStorage
+    const authToken = sessionStorage.getItem("authToken");
     if (authToken) {
-      setToken(authToken); // Set the token in state
+      setToken(authToken);
     }
   }, []);
 
-  // Function to handle successful login and set token
   const handleLoginSuccess = (newToken) => {
-    localStorage.setItem("authToken", newToken); // Store the token in localStorage
-    setToken(newToken); // Set the token in state
+    localStorage.setItem("authToken", newToken);
+    setToken(newToken);
   };
 
-  // Function to handle logout and clear token
   const handleLogout = () => {
-    localStorage.removeItem("authToken"); // Remove the token from localStorage
-    setToken("");  // Clear the token from state
-       // Reload the page to trigger re-render
-    // Reload the page to trigger re-render
-    // window.location.reload();
+    localStorage.removeItem("authToken");
+    setToken("");
   };
 
   return (
     <Router>
       <div className="app">
-      <NavBar isLoggedIn={Boolean(token)} logout={handleLogout} />
-      
+        <Navbar isLoggedIn={Boolean(token)} logout={handleLogout} />
+        <Carousel /> {/* Include the Carousel component here */}
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/posts" element={<AllPosts BASE_URL={BASE_URL} token={token} />} />
-          <Route path="/register" element={<RegistrationForm BASE_URL={BASE_URL} />} />
-          <Route path="/login" element={<Login BASE_URL={BASE_URL} handleLoginSuccess={handleLoginSuccess} />} />
+          {/* Other routes */}
         </Routes>
       </div>
     </Router>

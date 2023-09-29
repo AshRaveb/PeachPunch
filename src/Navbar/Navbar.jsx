@@ -1,13 +1,19 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import overlayImage from '../assets/Logo7.png';
+import { Link, useLocation } from 'react-router-dom';
+import overlayImage from '../Images/logo.jpg';
+import {
+  ShoppingCart,
+  House,
+  SignIn,
+  UserPlus,
+  ShoppingBagOpen,
+  Signout,
+} from "phosphor-react";
 
 function NavBar({ isLoggedIn, logout }) {
   return (
     <nav className="navbar">
-      {/* <div className="navbar-logo">
-        <img src={overlayImage} alt="Logo" />
-      </div> */}
+     
       <ul className="navbar-list">
       <div className="navbar-logo">
         <img src={overlayImage} alt="Logo" />
@@ -17,7 +23,7 @@ function NavBar({ isLoggedIn, logout }) {
           <Link to="/">Home</Link>
         </li>
         <li className="navbar-item">
-          <Link to="/posts">All Posts</Link>
+          <Link to="/posts">Cart</Link>
         </li>
         <li className="navbar-item">
           <Link to="/register">Register</Link>

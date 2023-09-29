@@ -1,0 +1,33 @@
+.navbar-item-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .dropdown-menu {
+  list-style: none;
+  margin: 0;
+  padding: 20px;
+  background-color: transparent;
+  display: flex;
+  }
+  
+  .navbar-item {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 60px;
+  }
+  
+  
+  
+  .dropdown-button {
+    margin-right: 10px; /* Adjust margin as needed */
+    padding: 5px 10px; /* Adjust padding as needed */
+    border: none; /* Remove border */
+    background-color: transparent;
+    color: rgb(2, 2, 2);
+  }

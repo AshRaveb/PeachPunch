@@ -1,0 +1,81 @@
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import star from '../assets/icons8-rating-64.png';
+
+export default function CartItem({ product, quantity, editProduct, deleteProduct }) {
+    const navigate = useNavigate();
+    const [productQuantity, setProductQuantity] = useState(0);
+    const { id, title, category, image, price, rating } = product;
+
+    useEffect(() => {
+        setProductQuantity(quantity);
+    }, []);
+
+    return (
+        <div className="grid grid-cols-6 border bg-trf-50 rounded-lg my-2 shadow-md overflow-hidden relative hover:shadow-lg">
+            <div className="bg-white flex cursor-pointer col-span-1 sm:col-span-2">
+                <img className="w-56 object-contain" src={image} onClick={() => navigate(`/productDetails/${id}`)} />
+            </div>
+
+            <div className="m-3 col-span-3 flex-row">
+                <h1 className="font-bold m-2 cursor-pointer" onClick={() => navigate(`/productDetails/${id}`)}>{title}</h1>
+                <p className="capitalize font-sm m-2">{category}</p>
+                <hr className="m-2"></hr>
+                <div className="">
+                    <img className="m-1 p-1 w-5 h-5 inline-block" src={star} alt="rating" />
+                    <span className="m-1 p-1">{parseFloat(rating.rate).toFixed(2)}</span>
+                    <span className="m-1 p-1">{rating.count} ratings</span>
+                </div>
+                <p className="font-bold m-2">${parseFloat(price).toFixed(2)}</p>
+                <div className="m-2 grid grid-cols-3 gap-x-2 gap-y-4">
+                    <select className="w-20 sm:w-28 md:w-36 col-span-2 border border-trf-950 shadow-md overflow-hidden relative hover:shadow-lg cursor-pointer" value={productQuantity}
+                        onChange={(e) => {
+                            editProduct(id, e.target.value, price);
+                            setProductQuantity(e.target.value);
+                        }}>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <button className="w-16 sm:w-24 md:w-28 px-2 py-2.5 bg-rose-300 hover:bg-rose-400 hover:text-rose-700 text-rose-950 rounded-lg text-md"
+                        onClick={() => deleteProduct(id, price)}>Delete</button>
+                </div>
+            </div>
+        </div>
+    )
+}
+
+
+
+
+
+// import React, { useContext } from "react";
+// import { ShopContext } from "../../context/shop-context";
+
+// export const CartItem = (props) => {
+//   const { id, productName, price, productImage } = props.data;
+//   const { cartItems, addToCart, removeFromCart, updateCartItemCount } =
+//     useContext(ShopContext);
+
+//   return (
+//     <div className="cartItem">
+//       <img src={productImage} />
+//       <div className="description">
+//         <p>
+//           <b>{productName}</b>
+//         </p>
+//         <p> Price: ${price}</p>
+//         <div className="countHandler">
+//           <button onClick={() => removeFromCart(id)}> - </button>
+//           <input
+//             value={cartItems[id]}
+//             onChange={(e) => updateCartItemCount(Number(e.target.value), id)}
+//           />
+//           <button onClick={() => addToCart(id)}> + </button>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };

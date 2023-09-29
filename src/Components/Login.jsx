@@ -12,7 +12,7 @@ function Login({ BASE_URL, handleLoginSuccess, token, user, setUser }) {
   const navigate = useNavigate(); // Hook to navigate to different routes
  
   const togglePasswordVisibility = () => (
-    setShowPassword(!showPassword);
+    setShowPassword(!showPassword)
   );
   // Function to send login request
   const login = async () => {
